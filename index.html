@@ -17,7 +17,6 @@
             --shadow-strong: rgba(0, 0, 0, 0.25);
             --card-inner-background: rgba(255, 255, 255, 0.9); /* Nahezu undurchsichtiger Hintergrund für Karteninhalt */
         }
-
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
@@ -28,24 +27,24 @@
             overflow-x: hidden;
         }
 
+        /* --- Ursprüngliches Mobile-Layout (Standard) --- */
         .header-section {
             width: 100%;
-            height: 300px;
+            height: 140px; /* Ursprüngliche mobile Höhe */
             background-image: url('https://inventive-it.com/wp-content/uploads/2021/06/application-development.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            position: fixed; /* Header fixieren */
+            position: fixed;
             top: 0;
             left: 0;
             display: flex;
             align-items: flex-end;
-            padding-bottom: 30px;
+            padding-bottom: 20px; /* Ursprüngliches mobiles Padding */
             box-sizing: border-box;
             color: var(--text-color-light);
-            z-index: 5; /* Stellt sicher, dass der Header über anderen Inhalten liegt */
+            z-index: 5;
         }
-
         .header-section::before {
             content: '';
             position: absolute;
@@ -56,7 +55,6 @@
             background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
             z-index: 1;
         }
-
         .header-content {
             position: relative;
             z-index: 2;
@@ -64,36 +62,32 @@
             width: 100%;
             text-align: left;
         }
-
         .header-content h1 {
-            font-size: 3em;
+            font-size: 2.5em; /* Ursprüngliche mobile Schriftgröße */
             font-weight: 700;
             text-shadow: 2px 2px 5px var(--shadow-strong);
         }
-
         .header-content p {
-            font-size: 1em;
+            font-size: 0.9em; /* Ursprüngliche mobile Schriftgröße */
             opacity: 0.9;
             margin-bottom: 0;
         }
-
         .main-content {
             background-color: #fff;
             border-top-left-radius: 30px;
             border-top-right-radius: 30px;
-            margin-top: 160px; /* Platz für den fixierten Header lassen (Höhe des Headers - Überlappung) */
-            padding: 30px 20px 80px; /* Mehr Padding unten für den Footer */
+            margin-top: 100px; /* Platz für den fixierten Header (140px Höhe - 40px Überlappung) */
+            padding: 25px 15px 80px; /* Ursprüngliches mobiles Padding */
             box-shadow: 0 -5px 15px var(--shadow-light);
             position: relative;
             z-index: 3;
-            max-width: 400px; /* Standardmäßig für mobile Ansicht */
+            max-width: 400px; /* WICHTIG: Begrenzt die Breite auf Mobilgeräten */
             width: 100%;
             box-sizing: border-box;
-            align-self: center;
+            align-self: center; /* Zentriert den Main Content */
             margin-left: auto;
             margin-right: auto;
         }
-
         .section-title {
             font-size: 1.4em;
             font-weight: 600;
@@ -101,14 +95,12 @@
             color: var(--text-color-dark);
             text-align: left;
         }
-
         .app-cards-container {
             display: flex;
             flex-direction: column; /* Standardmäßig untereinander für Mobile */
             gap: 25px;
             margin-bottom: 30px;
         }
-
         .app-card {
             background: var(--card-inner-background);
             border-radius: 20px;
@@ -118,60 +110,42 @@
             cursor: pointer;
             border: 3px solid rgba(255, 255, 255, 0.9);
         }
-
         .app-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 12px 35px var(--shadow-strong);
         }
-
         .app-card-image {
             width: 100%;
-            height: 150px;
+            height: 120px; /* Ursprüngliche mobile Bildhöhe */
             background-size: cover;
             background-position: center;
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
-
         /* Spezifische Bilder für jede Karte */
-        .app-card:nth-child(1) .app-card-image {
-            background-image: url('https://www.phase-6.de/magazin/wp-content/uploads/2018/08/Vokabeln-lernen-TITEL-1080x640.jpg'); /* Platzhalterbild App 1 */
-        }
-        .app-card:nth-child(2) .app-card-image {
-            background-image: url('https://nftnow.com/wp-content/uploads/2022/02/Nyan-Cat-Banner-1200x675.png'); /* Platzhalterbild App 2 */
-        }
-        .app-card:nth-child(3) .app-card-image {
-            background-image: url('https://thumbs.dreamstime.com/b/bright-flyer-keeping-tasks-notebook-poster-conceptual-idea-people-planning-banner-men-women-talk-everyday-ideas-154367131.jpg'); /* Platzhalterbild App 3 */
-        }
-        .app-card:nth-child(4) .app-card-image {
-            background-image: url('https://www.bikebeat.de/wp-content/uploads/2020/09/Hero-Banner-Placeholder-Light-1024x480-1.png'); /* Platzhalterbild App 4 */
-        }
-        .app-card:nth-child(5) .app-card-image {
-            background-image: url('https://www.bikebeat.de/wp-content/uploads/2020/09/Hero-Banner-Placeholder-Light-1024x480-1.png'); /* Platzhalterbild App 5 */
-        }
-        .app-card:nth-child(6) .app-card-image {
-            background-image: url('https://www.bikebeat.de/wp-content/uploads/2020/09/Hero-Banner-Placeholder-Light-1024x480-1.png'); /* Platzhalterbild App 6 */
-        }
+        .app-card:nth-child(1) .app-card-image { background-image: url('https://www.phase-6.de/magazin/wp-content/uploads/2018/08/Vokabeln-lernen-TITEL-1080x640.jpg'); }
+        .app-card:nth-child(2) .app-card-image { background-image: url('https://nftnow.com/wp-content/uploads/2022/02/Nyan-Cat-Banner-1200x675.png'); }
+        .app-card:nth-child(3) .app-card-image { background-image: url('https://thumbs.dreamstime.com/b/bright-flyer-keeping-tasks-notebook-poster-conceptual-idea-people-planning-banner-men-women-talk-everyday-ideas-154367131.jpg'); }
+        .app-card:nth-child(4) .app-card-image { background-image: url('https://www.bikebeat.de/wp-content/uploads/2020/09/Hero-Banner-Placeholder-Light-1024x480-1.png'); }
+        .app-card:nth-child(5) .app-card-image { background-image: url('https://www.bikebeat.de/wp-content/uploads/2020/09/Hero-Banner-Placeholder-Light-1024x480-1.png'); }
+        .app-card:nth-child(6) .app-card-image { background-image: url('https://www.bikebeat.de/wp-content/uploads/2020/09/Hero-Banner-Placeholder-Light-1024x480-1.png'); }
 
         .app-card-content {
             padding: 15px 20px 20px;
             text-align: left;
         }
-
         .app-card-content h3 {
-            font-size: 1.3em;
+            font-size: 1.2em; /* Ursprüngliche mobile Schriftgröße */
             font-weight: 600;
             color: var(--text-color-dark);
             margin-top: 0;
             margin-bottom: 0px;
         }
-
         .app-card-content p {
-            font-size: 0.9em;
+            font-size: 0.85em; /* Ursprüngliche mobile Schriftgröße */
             color: #666;
             line-height: 1.4;
             margin-bottom: 15px;
         }
-
         .app-card-content .action-button {
             display: inline-flex;
             align-items: center;
@@ -179,8 +153,8 @@
             background: var(--card-button-bg);
             border: none;
             color: var(--text-color-light);
-            padding: 12px 20px;
-            font-size: 1em;
+            padding: 10px 15px; /* Ursprüngliches mobiles Padding */
+            font-size: 0.95em; /* Ursprüngliche mobile Schriftgröße */
             font-weight: 500;
             border-radius: 10px;
             cursor: pointer;
@@ -188,24 +162,22 @@
             text-decoration: none;
             width: auto;
         }
-
         .app-card-content .action-button:hover {
             background: var(--card-button-hover-bg);
             transform: scale(1.02);
         }
-
         .app-card-content .action-button .icon {
             width: 18px;
             height: 18px;
             margin-right: 8px;
             background-color: var(--text-color-light);
             -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 13c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>') no-repeat center;
-            mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 13c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>') no-repeat center;
+            mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 13c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.76 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>') no-repeat center;
             -webkit-mask-size: contain;
             mask-size: contain;
         }
 
-        /* Footer Navigation (Optional, angelehnt an das Design-Bild) */
+        /* Footer Navigation (standardmäßig für Mobile sichtbar) */
         .footer-nav {
             width: 100%;
             background-color: #fff;
@@ -213,7 +185,7 @@
             padding: 5px 0;
             display: flex;
             justify-content: space-around;
-            position: fixed; /* Fixiert am unteren Rand */
+            position: fixed;
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
@@ -221,19 +193,17 @@
             border-top-left-radius: 20px;
             border-top-right-radius: 20px;
             z-index: 10;
-            max-width: 400px; /* Begrenzt die Breite des Footers */
+            max-width: 400px;
         }
-
         .footer-nav a {
             display: flex;
             flex-direction: column;
             align-items: center;
             text-decoration: none;
-            color: #ccc; /* Standardfarbe */
+            color: #ccc;
             font-size: 0.7em;
             transition: color 0.2s ease;
         }
-
         .footer-nav a .icon {
             width: 24px;
             height: 24px;
@@ -243,15 +213,12 @@
             mask-size: contain;
             transition: background-color 0.2s ease;
         }
-
         .footer-nav a.active {
-            color: #3F2B96; /* Farbe des aktiven Icons (direkt, da Gradient nicht direkt auf Text geht) */
+            color: #3F2B96;
         }
-
         .footer-nav a.active .icon {
-            background-color: #3F2B96; /* Farbe des aktiven Icons */
+            background-color: #3F2B96;
         }
-
         /* SVG Masken für Footer Icons (Beispiele) */
         .footer-nav a:nth-child(1) .icon {
             -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L3 9h3v12h12V9h3L12 2zm0 15c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>') no-repeat center;
@@ -266,44 +233,7 @@
             mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 5.9c1.16 0 2.1.94 2.1 2.1s-.94 2.1-2.1 2.1S9.9 9.16 9.9 8s.94-2.1 2.1-2.1zM12 14c2.67 0 5.8 1.29 6 3.06V19H6v-1.94c.2-.77 3.33-3.06 6-3.06z"/></svg>') no-repeat center;
         }
 
-        /* --- Media Queries für Responsiveness --- */
-
-        /* Für kleinere Bildschirme (Mobile) */
-        @media (max-width: 768px) {
-            .header-section {
-                height: 140px;
-                padding-bottom: 20px;
-            }
-            .header-content h1 {
-                font-size: 2.5em;
-            }
-            .header-content p {
-                font-size: 0.9em;
-            }
-            .main-content {
-                padding: 25px 15px 80px; /* Padding unten anpassen für den Footer */
-                margin-top: 100px; /* Anpassen für den kleineren Header */
-                max-width: 400px; /* Behält die maximale Breite bei */
-            }
-            .app-card-image {
-                height: 120px; /* Bildhöhe auf kleinen Bildschirmen anpassen */
-            }
-            .app-card-content h3 {
-                font-size: 1.2em;
-            }
-            .app-card-content p {
-                font-size: 0.85em;
-            }
-            .app-card-content .action-button {
-                padding: 10px 15px;
-                font-size: 0.95em;
-            }
-            .footer-nav {
-                display: flex; /* Footer auf mobilen Geräten anzeigen */
-            }
-        }
-
-        /* Für Tablets und Desktops (Landscape / größere Bildschirme) */
+        /* --- Media Queries für Landscape (größere Bildschirme) --- */
         @media (min-width: 769px) {
             .header-section {
                 height: 300px; /* Header-Höhe auf Desktop beibehalten */
@@ -330,7 +260,7 @@
 
             .section-title {
                 font-size: 2em; /* Größere Titel auf Desktop */
-                text-align: center; /* Titel optional zentrieren */
+                text-align: center; /* Titel zentrieren */
                 margin-bottom: 40px;
             }
 
@@ -347,10 +277,17 @@
                 margin-bottom: 20px; /* Abstand zwischen den Reihen */
             }
 
-            /* Wenn Sie 2 Karten pro Reihe möchten (z.B. für Tablets oder größere Karten): */
+            /* Anpassung für 2 Karten pro Reihe auf Tablets (optional) */
             @media (min-width: 769px) and (max-width: 1200px) {
                 .app-card {
                     flex: 0 0 calc(50% - 25px); /* 2 Karten pro Reihe */
+                }
+            }
+
+            /* Anpassung für 4 Karten pro Reihe auf sehr großen Desktops (optional) */
+            @media (min-width: 1401px) {
+                .app-card {
+                    flex: 0 0 calc(25% - 22.5px); /* 4 Karten pro Reihe */
                 }
             }
 
@@ -373,14 +310,7 @@
             }
 
             .footer-nav {
-                display: none; /* Footer auf Desktop ausblenden, da oft nicht benötigt */
-            }
-        }
-
-        /* Optional: Für sehr große Bildschirme (z.B. > 1400px) */
-        @media (min-width: 1401px) {
-            .app-card {
-                flex: 0 0 calc(25% - 22.5px); /* 4 Karten pro Reihe */
+                display: none; /* Footer auf Desktop ausblenden */
             }
         }
     </style>
