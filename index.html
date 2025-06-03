@@ -17,34 +17,38 @@
             --shadow-strong: rgba(0, 0, 0, 0.25);
             --card-inner-background: rgba(255, 255, 255, 0.9); /* Nahezu undurchsichtiger Hintergrund für Karteninhalt */
         }
+
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
+            /* display: flex;  Entfernt, da wir das Scrollen im Body zulassen */
+            /* flex-direction: column; */
             min-height: 100vh;
             background-color: #f0f2f5; /* Leichter Hintergrund */
             color: var(--text-color-dark);
             overflow-x: hidden;
+            /* overflow-y: hidden;  Nicht mehr nötig, da der Body selbst scrollen soll */
         }
 
-        /* --- Ursprüngliches Mobile-Layout (Standard) --- */
         .header-section {
             width: 100%;
-            height: 140px; /* Ursprüngliche mobile Höhe */
+            height: 300px;
             background-image: url('https://inventive-it.com/wp-content/uploads/2021/06/application-development.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            position: fixed;
+            position: fixed; /* Header fixieren */
             top: 0;
             left: 0;
             display: flex;
             align-items: flex-end;
-            padding-bottom: 20px; /* Ursprüngliches mobiles Padding */
+            padding-bottom: 30px;
             box-sizing: border-box;
             color: var(--text-color-light);
-            z-index: 5;
+            z-index: 5; /* Stellt sicher, dass der Header über anderen Inhalten liegt */
         }
+
         .header-section::before {
             content: '';
             position: absolute;
@@ -55,6 +59,7 @@
             background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
             z-index: 1;
         }
+
         .header-content {
             position: relative;
             z-index: 2;
@@ -62,32 +67,36 @@
             width: 100%;
             text-align: left;
         }
+
         .header-content h1 {
-            font-size: 2.5em; /* Ursprüngliche mobile Schriftgröße */
+            font-size: 3em;
             font-weight: 700;
             text-shadow: 2px 2px 5px var(--shadow-strong);
         }
+
         .header-content p {
-            font-size: 0.9em; /* Ursprüngliche mobile Schriftgröße */
+            font-size: 1em;
             opacity: 0.9;
             margin-bottom: 0;
         }
+
         .main-content {
             background-color: #fff;
             border-top-left-radius: 30px;
             border-top-right-radius: 30px;
-            margin-top: 100px; /* Platz für den fixierten Header (140px Höhe - 40px Überlappung) */
-            padding: 25px 15px 80px; /* Ursprüngliches mobiles Padding */
+            margin-top: 160px; /* Platz für den fixierten Header lassen (Höhe des Headers - Überlappung) */
+            padding: 30px 20px 80px; /* Mehr Padding unten für den Footer */
             box-shadow: 0 -5px 15px var(--shadow-light);
             position: relative;
             z-index: 3;
-            max-width: 400px; /* WICHTIG: Begrenzt die Breite auf Mobilgeräten */
+            max-width: 400px;
             width: 100%;
             box-sizing: border-box;
             align-self: center; /* Zentriert den Main Content */
-            margin-left: auto;
-            margin-right: auto;
+            margin-left: auto; /* Für Zentrierung */
+            margin-right: auto; /* Für Zentrierung */
         }
+
         .section-title {
             font-size: 1.4em;
             font-weight: 600;
@@ -95,89 +104,102 @@
             color: var(--text-color-dark);
             text-align: left;
         }
+
         .app-cards-container {
-            display: flex;
-            flex-direction: column; /* Standardmäßig untereinander für Mobile */
-            gap: 25px;
+            display: flex; /* Flexbox für die Cards */
+            flex-direction: column; /* Cards untereinander */
+            gap: 25px; /* Abstand zwischen den Cards */
             margin-bottom: 30px;
         }
+
         .app-card {
-            background: var(--card-inner-background);
-            border-radius: 20px;
-            box-shadow: 0 8px 25px var(--shadow-light);
-            overflow: hidden;
+            background: var(--card-inner-background); /* Fast undurchsichtig weiß */
+            border-radius: 20px; /* Rundere Ecken für die Karte */
+            box-shadow: 0 8px 25px var(--shadow-light); /* Weicherer Schatten */
+            overflow: hidden; /* Wichtig für Bild-Border-Radius */
             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
             cursor: pointer;
-            border: 3px solid rgba(255, 255, 255, 0.9);
+            border: 3px solid rgba(255, 255, 255, 0.9); /* Leichter Rand */
         }
+
         .app-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 12px 35px var(--shadow-strong);
         }
+
         .app-card-image {
             width: 100%;
-            height: 120px; /* Ursprüngliche mobile Bildhöhe */
+            height: 150px; /* Höhe des Bildbereichs */
             background-size: cover;
             background-position: center;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* Trennlinie zum Inhalt */
         }
         /* Spezifische Bilder für jede Karte */
-        .app-card:nth-child(1) .app-card-image { background-image: url('https://www.phase-6.de/magazin/wp-content/uploads/2018/08/Vokabeln-lernen-TITEL-1080x640.jpg'); }
-        .app-card:nth-child(2) .app-card-image { background-image: url('https://nftnow.com/wp-content/uploads/2022/02/Nyan-Cat-Banner-1200x675.png'); }
-        .app-card:nth-child(3) .app-card-image { background-image: url('https://thumbs.dreamstime.com/b/bright-flyer-keeping-tasks-notebook-poster-conceptual-idea-people-planning-banner-men-women-talk-everyday-ideas-154367131.jpg'); }
-        .app-card:nth-child(4) .app-card-image { background-image: url('https://www.bikebeat.de/wp-content/uploads/2020/09/Hero-Banner-Placeholder-Light-1024x480-1.png'); }
-        .app-card:nth-child(5) .app-card-image { background-image: url('https://www.bikebeat.de/wp-content/uploads/2020/09/Hero-Banner-Placeholder-Light-1024x480-1.png'); }
-        .app-card:nth-child(6) .app-card-image { background-image: url('https://www.bikebeat.de/wp-content/uploads/2020/09/Hero-Banner-Placeholder-Light-1024x480-1.png'); }
+        .app-card:nth-child(1) .app-card-image {
+            background-image: url('https://via.placeholder.com/400x150/A8C0FF/FFFFFF?text=App+1+Bild'); /* Platzhalterbild App 1 */
+        }
+        .app-card:nth-child(2) .app-card-image {
+            background-image: url('https://via.placeholder.com/400x150/FAD0C4/FFFFFF?text=App+2+Bild'); /* Platzhalterbild App 2 */
+        }
+        .app-card:nth-child(3) .app-card-image {
+            background-image: url('https://via.placeholder.com/400x150/6DD5ED/FFFFFF?text=App+3+Bild'); /* Platzhalterbild App 3 */
+        }
+        /* Wenn Sie eigene Bilder verwenden möchten, ersetzen Sie die placeholder-URLs hier */
 
         .app-card-content {
-            padding: 15px 20px 20px;
+            padding: 15px 20px 20px; /* Etwas mehr Polsterung unten */
             text-align: left;
         }
+
         .app-card-content h3 {
-            font-size: 1.2em; /* Ursprüngliche mobile Schriftgröße */
+            font-size: 1.3em;
             font-weight: 600;
             color: var(--text-color-dark);
             margin-top: 0;
             margin-bottom: 0px;
         }
+
         .app-card-content p {
-            font-size: 0.85em; /* Ursprüngliche mobile Schriftgröße */
+            font-size: 0.9em;
             color: #666;
             line-height: 1.4;
-            margin-bottom: 15px;
+            margin-bottom: 15px; /* Abstand zum Button */
         }
+
         .app-card-content .action-button {
-            display: inline-flex;
+            display: inline-flex; /* Für Icon und Text nebeneinander */
             align-items: center;
             justify-content: center;
-            background: var(--card-button-bg);
+            background: var(--card-button-bg); /* Button-Gradient */
             border: none;
-            color: var(--text-color-light);
-            padding: 10px 15px; /* Ursprüngliches mobiles Padding */
-            font-size: 0.95em; /* Ursprüngliche mobile Schriftgröße */
+            color: var(--text-color-light); /* Button-Textfarbe ist jetzt hell */
+            padding: 12px 20px;
+            font-size: 1em;
             font-weight: 500;
             border-radius: 10px;
             cursor: pointer;
             transition: background 0.3s ease, transform 0.2s ease;
-            text-decoration: none;
-            width: auto;
+            text-decoration: none; /* Als Link verwenden */
+            width: auto; /* Breite basierend auf Inhalt */
         }
+
         .app-card-content .action-button:hover {
             background: var(--card-button-hover-bg);
             transform: scale(1.02);
         }
+
         .app-card-content .action-button .icon {
             width: 18px;
             height: 18px;
-            margin-right: 8px;
-            background-color: var(--text-color-light);
-            -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 13c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>') no-repeat center;
-            mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 13c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.76 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>') no-repeat center;
+            margin-right: 8px; /* Abstand zum Text */
+            background-color: var(--text-color-light); /* Icon Farbe passend zum Text */
+            -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 13c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>') no-repeat center; /* Auge-Icon als Beispiel */
+            mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 13c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>') no-repeat center;
             -webkit-mask-size: contain;
             mask-size: contain;
         }
 
-        /* Footer Navigation (standardmäßig für Mobile sichtbar) */
+        /* Footer Navigation (Optional, angelehnt an das Design-Bild) */
         .footer-nav {
             width: 100%;
             background-color: #fff;
@@ -185,7 +207,7 @@
             padding: 5px 0;
             display: flex;
             justify-content: space-around;
-            position: fixed;
+            position: fixed; /* Fixiert am unteren Rand */
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
@@ -193,17 +215,19 @@
             border-top-left-radius: 20px;
             border-top-right-radius: 20px;
             z-index: 10;
-            max-width: 400px;
+            max-width: 400px; /* Begrenzt die Breite des Footers */
         }
+
         .footer-nav a {
             display: flex;
             flex-direction: column;
             align-items: center;
             text-decoration: none;
-            color: #ccc;
+            color: #ccc; /* Standardfarbe */
             font-size: 0.7em;
             transition: color 0.2s ease;
         }
+
         .footer-nav a .icon {
             width: 24px;
             height: 24px;
@@ -213,12 +237,15 @@
             mask-size: contain;
             transition: background-color 0.2s ease;
         }
+
         .footer-nav a.active {
-            color: #3F2B96;
+            color: #3F2B96; /* Farbe des aktiven Icons (direkt, da Gradient nicht direkt auf Text geht) */
         }
+
         .footer-nav a.active .icon {
-            background-color: #3F2B96;
+            background-color: #3F2B96; /* Farbe des aktiven Icons */
         }
+
         /* SVG Masken für Footer Icons (Beispiele) */
         .footer-nav a:nth-child(1) .icon {
             -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L3 9h3v12h12V9h3L12 2zm0 15c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>') no-repeat center;
@@ -233,84 +260,35 @@
             mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 5.9c1.16 0 2.1.94 2.1 2.1s-.94 2.1-2.1 2.1S9.9 9.16 9.9 8s.94-2.1 2.1-2.1zM12 14c2.67 0 5.8 1.29 6 3.06V19H6v-1.94c.2-.77 3.33-3.06 6-3.06z"/></svg>') no-repeat center;
         }
 
-        /* --- Media Queries für Landscape (größere Bildschirme) --- */
-        @media (min-width: 769px) {
+        /* Media Queries für Responsiveness */
+        @media (max-width: 480px) {
             .header-section {
-                height: 300px; /* Header-Höhe auf Desktop beibehalten */
-                padding-bottom: 50px; /* Mehr Polsterung für Desktop-Header */
-            }
-            .header-content {
-                max-width: 1200px; /* Header-Inhalt auf Desktop zentrieren */
-                margin: 0 auto;
-                padding: 0 40px;
+                height: 140px;
+                padding-bottom: 20px;
             }
             .header-content h1 {
-                font-size: 4em; /* Größere Schrift für Desktop */
+                font-size: 2.5em;
             }
             .header-content p {
-                font-size: 1.2em; /* Größere Schrift für Desktop */
+                font-size: 0.9em;
             }
-
             .main-content {
-                max-width: 1200px; /* Breiterer Main-Content für Desktop */
-                margin-top: 200px; /* Abstand zum Header anpassen */
-                padding: 50px 40px; /* Mehr Polsterung für Desktop */
-                border-radius: 30px; /* Behält die Rundung bei */
+                padding: 25px 15px 80px; /* Padding unten anpassen für den Footer */
+                /*margin-top: 220px;  Platz für den fixierten Header (250px Höhe - 30px Überlappung) */
             }
-
-            .section-title {
-                font-size: 2em; /* Größere Titel auf Desktop */
-                text-align: center; /* Titel zentrieren */
-                margin-bottom: 40px;
-            }
-
-            .app-cards-container {
-                flex-direction: row; /* Karten nebeneinander */
-                flex-wrap: wrap; /* Kartenumbrüche ermöglichen */
-                justify-content: center; /* Karten zentrieren */
-                gap: 30px; /* Abstand zwischen den Karten erhöhen */
-            }
-
-            .app-card {
-                flex: 0 0 calc(33.333% - 20px); /* 3 Karten pro Reihe, mit Abstand */
-                max-width: 350px; /* Maximale Breite für Karten definieren */
-                margin-bottom: 20px; /* Abstand zwischen den Reihen */
-            }
-
-            /* Anpassung für 2 Karten pro Reihe auf Tablets (optional) */
-            @media (min-width: 769px) and (max-width: 1200px) {
-                .app-card {
-                    flex: 0 0 calc(50% - 25px); /* 2 Karten pro Reihe */
-                }
-            }
-
-            /* Anpassung für 4 Karten pro Reihe auf sehr großen Desktops (optional) */
-            @media (min-width: 1401px) {
-                .app-card {
-                    flex: 0 0 calc(25% - 22.5px); /* 4 Karten pro Reihe */
-                }
-            }
-
+            /* Bei sehr kleinen Bildschirmen bleiben die Cards untereinander, da sie bereits das sind */
             .app-card-image {
-                height: 180px; /* Bildhöhe auf Desktop anpassen */
-            }
-
-            .app-card-content {
-                padding: 20px 25px; /* Polsterung auf Desktop anpassen */
+                height: 120px; /* Bildhöhe auf kleinen Bildschirmen anpassen */
             }
             .app-card-content h3 {
-                font-size: 1.4em; /* Schriftgröße anpassen */
+                font-size: 1.2em;
             }
             .app-card-content p {
-                font-size: 1em; /* Schriftgröße anpassen */
+                font-size: 0.85em;
             }
             .app-card-content .action-button {
-                padding: 14px 25px; /* Button-Polsterung anpassen */
-                font-size: 1.05em;
-            }
-
-            .footer-nav {
-                display: none; /* Footer auf Desktop ausblenden */
+                padding: 10px 15px;
+                font-size: 0.95em;
             }
         }
     </style>
@@ -318,90 +296,50 @@
 <body>
     <div class="header-section">
         <div class="header-content">
-            <h1>Meine Mobilen Apps</h1>
-            <p>Entdecken Sie unsere Sammlung von nützlichen und unterhaltsamen Anwendungen.</p>
+            <h1>Mobile Apps</h1>
+            <p></p>
         </div>
     </div>
 
     <div class="main-content">
-        <h2 class="section-title">Unsere Apps</h2>
         <div class="app-cards-container">
             <div class="app-card" onclick="window.location.href='https://vokabeltrainer.github.io/Vokabeltrainer/'">
                 <div class="app-card-image" style="background-image: url('https://www.phase-6.de/magazin/wp-content/uploads/2018/08/Vokabeln-lernen-TITEL-1080x640.jpg');"></div>
                 <div class="app-card-content">
                     <h3>Vokabeltrainer</h3>
-                    <p>Trainieren Sie Ihre Sprachkenntnisse mit unserem effektiven Vokabeltrainer.</p>
-                    <a href="https://vokabeltrainer.github.io/Vokabeltrainer/" class="action-button">
-                        <span class="icon"></span>Mehr erfahren
-                    </a>
                 </div>
             </div>
             <div class="app-card" onclick="window.location.href='https://vokabeltrainer.github.io/MemeSelector/'">
                 <div class="app-card-image" style="background-image: url('https://nftnow.com/wp-content/uploads/2022/02/Nyan-Cat-Banner-1200x675.png');"></div>
                 <div class="app-card-content">
                     <h3>Meme Selector Dashboard</h3>
-                    <p>Das ultimative Dashboard für die Auswahl und Verwaltung Ihrer Lieblings-Memes.</p>
-                    <a href="https://vokabeltrainer.github.io/MemeSelector/" class="action-button">
-                        <span class="icon"></span>Mehr erfahren
-                    </a>
                 </div>
             </div>
             <div class="app-card" onclick="window.location.href='https://vokabeltrainer.github.io/DailyCompanion/'">
                 <div class="app-card-image" style="background-image: url('https://thumbs.dreamstime.com/b/bright-flyer-keeping-tasks-notebook-poster-conceptual-idea-people-planning-banner-men-women-talk-everyday-ideas-154367131.jpg');"></div>
                 <div class="app-card-content">
                     <h3>Daily Companion</h3>
-                    <p>Ihr täglicher Begleiter für Aufgaben, Notizen und Organisation.</p>
-                    <a href="https://vokabeltrainer.github.io/DailyCompanion/" class="action-button">
-                        <span class="icon"></span>Mehr erfahren
-                    </a>
                 </div>
             </div>
             <div class="app-card" onclick="window.location.href='https://vokabeltrainer.github.io/DailyCompanion/'">
                 <div class="app-card-image" style="background-image: url('https://www.bikebeat.de/wp-content/uploads/2020/09/Hero-Banner-Placeholder-Light-1024x480-1.png');"></div>
                 <div class="app-card-content">
                     <h3>Platzhalter</h3>
-                    <p>Hier kommt bald eine weitere spannende App hin!</p>
-                    <a href="https://vokabeltrainer.github.io/DailyCompanion/" class="action-button">
-                        <span class="icon"></span>Mehr erfahren
-                    </a>
                 </div>
             </div>
             <div class="app-card" onclick="window.location.href='https://vokabeltrainer.github.io/DailyCompanion/'">
                 <div class="app-card-image" style="background-image: url('https://www.bikebeat.de/wp-content/uploads/2020/09/Hero-Banner-Placeholder-Light-1024x480-1.png');"></div>
                 <div class="app-card-content">
                     <h3>Platzhalter 2</h3>
-                    <p>Noch eine tolle Anwendung, die wir bald vorstellen werden.</p>
-                    <a href="https://vokabeltrainer.github.io/DailyCompanion/" class="action-button">
-                        <span class="icon"></span>Mehr erfahren
-                    </a>
                 </div>
             </div>
             <div class="app-card" onclick="window.location.href='https://vokabeltrainer.github.io/DailyCompanion/'">
                 <div class="app-card-image" style="background-image: url('https://www.bikebeat.de/wp-content/uploads/2020/09/Hero-Banner-Placeholder-Light-1024x480-1.png');"></div>
                 <div class="app-card-content">
                     <h3>Platzhalter 3</h3>
-                    <p>Bleiben Sie dran für Updates zu dieser zukünftigen App.</p>
-                    <a href="https://vokabeltrainer.github.io/DailyCompanion/" class="action-button">
-                        <span class="icon"></span>Mehr erfahren
-                    </a>
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="footer-nav">
-        <a href="#" class="active">
-            <span class="icon"></span>
-            Home
-        </a>
-        <a href="#">
-            <span class="icon"></span>
-            Standorte
-        </a>
-        <a href="#">
-            <span class="icon"></span>
-            Profil
-        </a>
     </div>
 
     <script>
