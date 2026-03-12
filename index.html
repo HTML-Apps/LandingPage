@@ -241,7 +241,22 @@
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
-    <script>eruda.init();</script>
-    
+    <script>
+        eruda.init();
+        
+        // Kleiner Trick: Wir fügen das "Seitenleisten-CSS" direkt ein
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @media (min-width: 1000px) { /* Nur auf breiten Monitoren/DeX */
+                .eruda-container { 
+                    width: 400px !important; 
+                    left: calc(100% - 400px) !important; 
+                    z-index: 999999 !important;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+
 </body>
 </html>
