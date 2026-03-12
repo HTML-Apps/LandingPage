@@ -243,19 +243,40 @@
     <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
     <script>
         eruda.init();
-        
-        // Kleiner Trick: Wir fügen das "Seitenleisten-CSS" direkt ein
-        const style = document.createElement('style');
-        style.innerHTML = `
-            @media (min-width: 1000px) { /* Nur auf breiten Monitoren/DeX */
-                .eruda-container { 
-                    width: 400px !important; 
-                    left: calc(100% - 400px) !important; 
-                    z-index: 999999 !important;
-                }
+
+        // Diese Funktion erzwingt das Desktop-Layout (Rechts am Rand)
+        function forceSidePanel() {
+            const container = document.querySelector('.eruda-container');
+            if (!container) return;
+
+            // Wir nutzen !important im JS-Style, um Erudas interne Logik zu schlagen
+            container.style.setProperty('width', '400px', 'important');
+            container.style.setProperty('height', '100%', 'important');
+            container.style.setProperty('left', 'calc(100% - 400px)', 'important');
+            container.style.setProperty('top', '0', 'important');
+            container.style.setProperty('position', 'fixed', 'important');
+            container.style.setProperty('display', 'block', 'important');
+            
+            // Die eigentliche Tool-Box im Container muss auch mitziehen
+            const devTools = container.querySelector('.eruda-dev-tools');
+            if (devTools) {
+                devTools.style.setProperty('height', '100%', 'important');
             }
-        `;
-        document.head.appendChild(style);
+        }
+
+        // 1. Sofort beim Start versuchen
+        setTimeout(forceSidePanel, 500);
+
+        // 2. Jedes Mal, wenn das Zahnrad geklickt wird (Eruda baut sich neu auf)
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.eruda-entry-btn') || e.target.closest('.eruda-container')) {
+                setTimeout(forceSidePanel, 100);
+            }
+        }, true);
+
+        // 3. "Wachhund": Falls Eruda versucht, sich zurückzusetzen
+        const observer = new MutationObserver(forceSidePanel);
+        observer.observe(document.body, { childList: true, subtree: true });
     </script>
 
 </body>
